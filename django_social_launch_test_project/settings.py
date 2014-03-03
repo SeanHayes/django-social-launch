@@ -12,8 +12,6 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
 	# ('Your Name', 'your_email@example.com'),
-	('Sean Hayes', 'sean@seanhayes.name',),
-	('Eric Milligan', 'elricdd@gmail.com',),
 )
 
 MANAGERS = ADMINS
@@ -108,7 +106,6 @@ MIDDLEWARE_CLASSES = (
 	'django.contrib.messages.middleware.MessageMiddleware',
 	# Uncomment the next line for simple clickjacking protection:
 	# 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	'debug_toolbar.middleware.DebugToolbarMiddleware'
 )
 
 ROOT_URLCONF = PACKAGE_MODULE+'.urls'
@@ -139,7 +136,6 @@ INSTALLED_APPS = (
 	'django.contrib.admin',
 	'django.contrib.admindocs',
 	#3rd Party Apps
-	'debug_toolbar',
 	'registration',
 	'social_auth',
 	#Project Apps
@@ -180,10 +176,6 @@ LOGGING = {
 }
 
 INTERNAL_IPS = ('127.0.0.1',)
-
-DEBUG_TOOLBAR_CONFIG = {
-	'INTERCEPT_REDIRECTS': False,
-}
 
 try:
 	from local_settings import *
