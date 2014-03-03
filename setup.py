@@ -34,7 +34,7 @@ setup(name='django-social-launch',
 		'django_social_launch_test_project',
 	],
 	include_package_data=True,
-	install_requires=['Django>=1.4', 'django-pagination',],
+	install_requires=['Django>=1.4', 'django-pagination', 'django-social-auth', 'django-registration',],
 	test_suite = '%s.runtests.runtests' % test_package_name,
 )
 
