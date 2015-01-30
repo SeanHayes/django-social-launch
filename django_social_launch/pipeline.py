@@ -35,15 +35,15 @@ def set_password(backend, user, is_new=False, *args, **kwargs):
         user.save()
 
 
-def set_referral_data(request, user, *args, **kwargs):
+def set_referral_data(backend, user, *args, **kwargs):
     referring_user = None
-    referrer_url = request.session.get(referrer_url_session_key, '')
     
-    referring_user_pk = request.session.get(referring_user_pk_session_key, None)
+    referrer_url = backend.strategy.session_get(referrer_url_session_key, '')
+    referring_user_pk = backend.strategy.session_get(referring_user_pk_session_key, None)
     
     if referring_user_pk:
         try:
-            referring_user = User.objects.get(id=referring_user_pk)
+            referring_user = User.objects.get(pk=referring_user_pk)
         except ValueError:
             pass
         except User.DoesNotExist:

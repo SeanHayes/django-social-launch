@@ -16,6 +16,7 @@ def index(request, referring_user_pk=None):
     referring_user = None
     has_registered = False
     referrer_count = None
+    form = None
     
     if referring_user_pk is not None:
         try:
@@ -27,7 +28,6 @@ def index(request, referring_user_pk=None):
     
     if has_registered:
         referrer_count = User.objects.filter(referring_user=referring_user).count()
-        form = None
     else:
         form = UserSignupForm()
         

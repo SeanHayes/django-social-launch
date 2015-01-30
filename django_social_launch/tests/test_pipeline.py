@@ -211,9 +211,13 @@ class SetReferralDataTestCase(BaseTestCase):
         request = self.factory.get('/')
         request.session = self.session
         
+        strategy = load_strategy(request=request)
+        
+        backend = EmailAuth(strategy=strategy)
+        
         user = User.objects.create_user('foo@example.com', password='foo')
         
-        set_referral_data(request=request, user=user)
+        set_referral_data(backend=backend, user=user)
         
         user = User.objects.get(pk=user.pk)
         
@@ -230,9 +234,13 @@ class SetReferralDataTestCase(BaseTestCase):
         request = self.factory.get('/')
         request.session = self.session
         
+        strategy = load_strategy(request=request)
+        
+        backend = EmailAuth(strategy=strategy)
+        
         user = User.objects.create_user('foo@example.com', password='foo')
         
-        set_referral_data(request=request, user=user)
+        set_referral_data(backend=backend, user=user)
         
         user = User.objects.get(pk=user.pk)
         
@@ -249,9 +257,13 @@ class SetReferralDataTestCase(BaseTestCase):
         request = self.factory.get('/')
         request.session = self.session
         
+        strategy = load_strategy(request=request)
+        
+        backend = EmailAuth(strategy=strategy)
+        
         user = User.objects.create_user('foo@example.com', password='foo')
         
-        set_referral_data(request=request, user=user)
+        set_referral_data(backend=backend, user=user)
         
         user = User.objects.get(pk=user.pk)
         
@@ -268,9 +280,13 @@ class SetReferralDataTestCase(BaseTestCase):
         request = self.factory.get('/')
         request.session = self.session
         
+        strategy = load_strategy(request=request)
+        
+        backend = EmailAuth(strategy=strategy)
+        
         user = User.objects.create_user('foo@example.com', password='foo')
         
-        set_referral_data(request=request, user=user)
+        set_referral_data(backend=backend, user=user)
         
         user = User.objects.get(pk=user.pk)
         

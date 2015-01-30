@@ -27,7 +27,7 @@
 			</form>
 		</li>
 		<li>
-			<form action="{% url 'social:begin' "email" %}" method="post">{% csrf_token %}
+			<form action="{% url 'social:complete' "email" %}" method="post">{% csrf_token %}
 				<div>
 					{{ form.email }}
 					<input type="submit" value="Go" />
