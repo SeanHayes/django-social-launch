@@ -7,8 +7,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = '%s.settings' % settings.PACKAGE_MODULE
 sys.path.insert(0, settings.PACKAGE_PARENT_DIR)
 
 def runtests():
-	call_command('test', 'django_social_launch')
-	sys.exit()
+    call_command('test', 'django_social_launch')
+    sys.exit()
 
 if __name__ == '__main__':
-	runtests()
+    runtests()

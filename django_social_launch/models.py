@@ -1,18 +1,13 @@
 #Django imports
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
-
-#App imports
-from .managers import SocialLaunchProfileManager
 
 # Create your models here.
 
-class SocialLaunchProfile(models.Model):
-	objects = SocialLaunchProfileManager()
-	
-	user				= models.OneToOneField(User)
-	referrer_url		= models.CharField(blank=True, max_length=255)
-	referring_user		= models.ForeignKey(User, null=True, related_name='referred_profile_set')
+class SocialLaunchUserMixin(models.Model):
+    referrer_url        = models.CharField(blank=True, max_length=255, help_text="The URL that led the user to this site.")
+    referring_user      = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name='referred_users')
+    
+    class Meta:
+        abstract = True
 
-	def __unicode__(self):
-		return unicode(self.user)

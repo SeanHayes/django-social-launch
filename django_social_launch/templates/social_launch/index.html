@@ -12,30 +12,31 @@
 	<p>
 		Sign up for this awesome service!
 	</p>
-	<form method="POST">
-	{% csrf_token %}
-	<p id="email-form">
-		{{ form.email }}
-		<input type="submit" value="Go" />
-	</p>
-	</form>
 
 	<ul>
-		<li><a rel="nofollow" href="{% url socialauth_begin "twitter" %}">Twitter</a></li>
-		<li><a rel="nofollow" href="{% url socialauth_begin "facebook" %}">Facebook</a></li>
-		<li><a rel="nofollow" href="{% url socialauth_begin "linkedin" %}">Linkedin</a></li>
-		<li><a rel="nofollow" href="{% url socialauth_begin "google-oauth2" %}">Google</a></li>
+		<li><a href="{% url 'social:begin' "twitter" %}">Twitter</a></li>
+		<li><a href="{% url 'social:begin' "facebook" %}">Facebook</a></li>
+		<li><a href="{% url 'social:begin' "linkedin" %}">Linkedin</a></li>
+		<li><a href="{% url 'social:begin' "google-oauth2" %}">Google</a></li>
 		<li>
-			<form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
+			<form action="{% url 'social:begin' "openid" %}" method="post">{% csrf_token %}
 				<div>
 					<input id="openid_identifier" type="text" value="" placeholder="example.myopenid.com" name="openid_identifier" />
 					<input type="submit" value="Go" />
 				</div>
 			</form>
 		</li>
+		<li>
+			<form action="{% url 'social:begin' "email" %}" method="post">{% csrf_token %}
+				<div>
+					{{ form.email }}
+					<input type="submit" value="Go" />
+				</div>
+			</form>
+		</li>
 	</ul>
 	{% else %}
-	<p>This user has referred {{ referrer_count }} user{{ referrer_count|pluralize }}.</p>
+	<p>You have referred {{ referrer_count }} user{{ referrer_count|pluralize }}.</p>
 
 	{% endif %}
 	<div id="sharing-buttons">
