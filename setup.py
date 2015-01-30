@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, find_packages
 import django_social_launch
 
 package_name = 'django_social_launch'
 test_package_name = '%s_test_project' % package_name
+
+EXCLUDE_FROM_PACKAGES = ['%s*' % test_package_name]
 
 def runtests():
     import os
@@ -41,10 +43,7 @@ setup(name='django-social-launch',
     url='http://seanhayes.name/',
     download_url='https://github.com/SeanHayes/django-social-launch',
     license='GPL',
-    packages=[
-        package_name,
-        test_package_name,
-    ],
+    packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
     include_package_data=True,
     install_requires=['Django>=1.7', 'python-social-auth',],
     test_suite='setup.runtests',
