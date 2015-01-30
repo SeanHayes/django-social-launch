@@ -24,9 +24,12 @@ def index(request, referring_user_pk=None):
         except ValueError:
             raise Http404
     
-    has_registered = request.user.is_authenticated() or request.session.get('username', '')
+    has_registered = request.user.is_authenticated()
     
     if has_registered:
+        if not referring_user_pk:
+            return redirect('social_launch_referral', referring_user_pk=request.user.pk)
+        
         referrer_count = User.objects.filter(referring_user=referring_user).count()
     else:
         form = UserSignupForm()

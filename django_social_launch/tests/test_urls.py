@@ -25,6 +25,7 @@ class IndexTestCase(BaseTestCase):
         response = self.client.get(reverse('social_launch_index'), HTTP_REFERER=referrer_url)
         
         self.assertEqual(response.status_code, 200)
+        
         self.assertEqual(self.client.session[referrer_url_session_key], referrer_url)
     
     def test_get_logged_in(self):
@@ -32,12 +33,20 @@ class IndexTestCase(BaseTestCase):
         
         response = self.client.get(reverse('social_launch_index'))
         
-        self.assertEqual(response.status_code, 200)
+        self.assertRedirects(response, reverse('social_launch_referral', kwargs={'referring_user_pk': self.user1.pk}))
 
 
 class ReferralTestCase(BaseTestCase):
     def test_get_success(self):
         response = self.client.get(reverse('social_launch_referral', kwargs={'referring_user_pk' : self.user1.id}))
+        
+        self.assertEqual(response.status_code, 200)
+    
+    def test_get_success_logged_in(self):
+        self.client.login(username=self.username, password=self.password)
+        
+        response = self.client.get(reverse('social_launch_referral', kwargs={'referring_user_pk' : self.user1.id}))
+        
         self.assertEqual(response.status_code, 200)
         
     def test_get_fails_invalid_id(self):
